@@ -12,38 +12,34 @@ public class Product extends Menu {
 	
 	
 	void orderMenu(int num) {
-		Scanner scanner = new Scanner(System.in);
-		
 		// 메뉴판 출력
 		System.out.println("=======================================");
 		System.out.println("Compose Coffee에 오신걸 환영합니다 !");
 		System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요. \n");
-		
-		System.out.println("[ " + " MENU ]");
-		
-		for (int i=0; i<menuName[num-1].length ;i++) { // 매개변수 기반으로 선택한 메뉴 출력
-			System.out.println(i+1 + ". " + menuName[num-1][i] + " | " + menuPrice[num-1][i] + "원 | " + menuDesc[num-1][i] );
-		}				
-		
-
-		int menuNum = scanner.nextInt() -1;
-		
-		System.out.println("** " + menuName[num-1][menuNum] + " | " + menuPrice[num-1][menuNum] + "원 | " + menuDesc[num-1][menuNum] + " **" );
-		System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
-		System.out.println("1. 확인                         2. 취소");
-		int orderNum = scanner.nextInt();
-		while(true) {
-		if (orderNum ==1) {
+		System.out.println("[ " + "MENU ]");
 			
-			break;			
-		}else if (orderNum == 2) {
+			for (int i=0; i<menuName[num-1].length ;i++) { // 매개변수 기반으로 선택한 메뉴 출력
+				System.out.println(i+1 + ". " + menuName[num-1][i] + " | " + menuPrice[num-1][i] + "원 | " + menuDesc[num-1][i] );
+			}				
 			
-			break;
-		}else {
-			System.out.println("잘못된 숫자입니다. 1이나 2를 입력해주세요.");
-		}
-	}
-		scanner.close();
+			int menuNum = scanner.nextInt() -1;
+			
+			System.out.println("\n ** " + menuName[num-1][menuNum] + " | " + menuPrice[num-1][menuNum] + "원 | " + menuDesc[num-1][menuNum] + " **" );
+			System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+			System.out.println("1. 확인                         2. 취소");
+			int orderNum = scanner.nextInt();
+			while(true) {
+				if (orderNum ==1) {
+					
+					break;			
+				}else if (orderNum == 2) {
+					System.out.println("선택을 취소하셨습니다. 초기 화면으로 돌아갑니다. \n");
+					System.out.println("=======================================");
+					break;
+				}else {
+					System.out.println("잘못된 숫자입니다. 1이나 2를 입력해주세요.");
+				}
+			}
 	}
 	
 	Product(){

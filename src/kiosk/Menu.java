@@ -10,6 +10,8 @@ public abstract class Menu {
 	private Map<String,String> orderMenu = new LinkedHashMap<>();
 	Set<String> totalkey;
 	Set<String> orderKey;
+
+	public Scanner scanner = new Scanner(System.in);
 	
 	abstract void orderMenu(int num);
 
@@ -56,14 +58,12 @@ public abstract class Menu {
 			}else if (num == i-1) {
 				
 				break;
-			}else if(num == 1) {
+			}else if(num == i) {
 				
 				break;
 			}else {
 				System.out.println("잘못된 숫자입니다. 1부터 " + i + "사이의 값을 입력해주세요.");
 			}
 		}
-
-		scanner.close();
 	}
 }

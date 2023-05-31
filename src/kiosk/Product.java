@@ -1,11 +1,6 @@
 package kiosk;
 
 public class Product extends Menu {
-
-	// 상세 메뉴 변수들, Order에서 상속받아 사용할 수 있게 함
-	String menuName[][] = new  String[5][3];
-	String menuDesc[][] = new  String[5][3];
-	int menuPrice[][] = new  int[5][3];
 	
 	Product(){
 		// 1번의 메뉴 이름, 설명, 가격 추가

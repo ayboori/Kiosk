@@ -14,19 +14,17 @@ public class Order extends Product {
 		shopDesc.add(menuDesc[firstNum][menuNum]);
 		shopPrice.add(menuPrice[firstNum][menuNum]);
 		totalPrice += menuPrice[firstNum][menuNum];
-	}
-	
-	public void showMenu() {
-		System.out.println("=======================================");
-		for (int i =0; i < shopName.size(); i++) {
-			System.out.println("\n ** " + shopName.get(i) + " | " + shopPrice.get(i) + "원 | " + shopDesc.get(i) + " **" );
-		}
-		System.out.println("[ Total Price ]\n" + totalPrice + " 원");
-		System.out.println("위와 같이 주문 하시겠습니까?");
+		System.out.println("메뉴가 장바구니에 추가되었습니다.");
+		System.out.println("=======================================\n");
 	}
 	
 	public void resetMenu() {
-		
+		shopName.clear();
+		shopDesc.clear();
+		shopPrice.clear();
+		totalPrice = 0;
+		System.out.println("메뉴가 초기화 되었습니다.");
+		System.out.println("=======================================\n");
 	}
 	
 

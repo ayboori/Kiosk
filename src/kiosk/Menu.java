@@ -5,15 +5,24 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-public abstract class Menu {
+public class Menu {
+	// 전체 메뉴 변수들
 	public Map<String,String> totalMenu = new LinkedHashMap<>();
 	private Map<String,String> orderMenu = new LinkedHashMap<>();
 	Set<String> totalkey;
 	Set<String> orderKey;
 
-	public Scanner scanner = new Scanner(System.in);
+	// 상세 메뉴 변수들, Product와 Order에서 상속받아 사용할 수 있게 함
+	String menuName[][] = new  String[5][3];
+	String menuDesc[][] = new  String[5][3];
+	int menuPrice[][] = new  int[5][3];
 	
-	abstract void orderMenu(int num);
+	// Product, Order 참조
+	private Product product = new Product();
+	private Order order = new Order();
+	
+	// Scanner을 다른 클래스들에서 상속 받아 사용하도록 함 (다른 클래스들에서 close 해버리면 프로그램 진행이 안 되므로 가장 큰 틀에서 close할 것)
+	public Scanner scanner = new Scanner(System.in);
 
 	Menu(){ // 생성자에서 메뉴 명 초기화
 		totalMenu.put("Coffee","컴포즈 고유 원두를 사용한 커피");
@@ -27,7 +36,8 @@ public abstract class Menu {
 		
 		totalkey = totalMenu.keySet();
 		orderKey = orderMenu.keySet();
-	}
+		
+		}
 	public void printMenu() {
 		Scanner scanner = new Scanner(System.in);
 		int i = 0;
@@ -50,16 +60,16 @@ public abstract class Menu {
 		
 		// 숫자 입력 받아 적절한 함수 실행 / 예상 밖의 값이면 다시 입력받음
 		while(true) {
-			int num = scanner.nextInt();
+			int firstNum = scanner.nextInt();
 			
-			if(num < i-1 && num > 0 ) {
-				orderMenu(num);
+			if(firstNum < i-1 && firstNum > 0 ) { // 해당 상세 메뉴 페이지로 넘어가기
+				product.orderMenu(firstNum); 
 				break;
-			}else if (num == i-1) {
-				
+			}else if (firstNum == i-1) { // 장바구니 목록 보러 가기
+				order.showMenu();
 				break;
-			}else if(num == i) {
-				
+			}else if(firstNum == i) { // 주문 중인 주문 취소하기
+				order.resetMenu();
 				break;
 			}else {
 				System.out.println("잘못된 숫자입니다. 1부터 " + i + "사이의 값을 입력해주세요.");

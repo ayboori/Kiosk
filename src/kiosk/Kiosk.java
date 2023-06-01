@@ -10,9 +10,9 @@ public class Kiosk {
 	
 	public Scanner scanner = new Scanner(System.in);
 	
-	int waitNum = 1; // 대기번호
+	int waitNum = 1; // 대기번호	
 	
-	Kiosk(){
+	Kiosk(){ // 클래스 객체 생성
 		product = new Product();
 		order = new Order();
 		menu = new Menu();
@@ -62,14 +62,14 @@ public class Kiosk {
 				break;
 			}else if(firstNum == i+1){ // 프로그램 종료 입력 시 종료
 				System.out.println("프로그램이 종료됩니다. \n안녕히 가세요.");
-				break;
+				return true;
 			}
 			else { // 잘못된 숫자 입력시
-				System.out.println("잘못된 숫자입니다. 1부터 " + i + "사이의 값을 입력해주세요.");
+				System.out.println("잘못된 숫자입니다. 1부터 " + (int)(i+1) + "사이의 값을 입력해주세요.");
 			}
 		}
 		
-		return true;
+		return false;
 	}
 	
 	void orderMenu(int firstNum) {
@@ -93,13 +93,14 @@ public class Kiosk {
 					break;					
 				}
 			}
+			
 		
 			System.out.println("\n ** " + product.menuName[firstNum-1][menuNum] + " | " + product.menuPrice[firstNum-1][menuNum] + "원 | " + product.menuDesc[firstNum-1][menuNum] + " **" );
 			System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
 			System.out.println("1. 확인                         2. 취소");
 			
-			int orderNum = scanner.nextInt();
 			while(true) {
+				int orderNum = scanner.nextInt();
 				if (orderNum ==1) {
 					order.addMenu(firstNum-1,menuNum);
 					break;			
@@ -114,11 +115,19 @@ public class Kiosk {
 	}
 	
 	public void showMenu() {
+		if (order.totalPrice==0) {
+			System.out.println("=======================================\n");
+			System.out.println("장바구니에 담긴 품목이 없습니다. 초기 화면으로 돌아갑니다.\n");
+			System.out.println("=======================================\n");
+			return;
+		}
+		
 		System.out.println("=======================================");
 		System.out.println("[ 장바구니 목록 ] \n");
 		
 		for (int i =0; i < order.shopName.size(); i++) {
-			System.out.println("** " + order.shopName.get(i) + " | " + order.shopPrice.get(i) + "원 | " + order.shopDesc.get(i) + " **" );
+			System.out.println("** " + order.shopName.get(i) + " | " + order.shopPrice.get(i) + "원 | " 
+						+ order.shopDesc.get(i) + " | " + order.shopCount.get(i) + "개 **");
 		}
 		System.out.println("\n [ Total Price ]\n" + order.totalPrice + " 원");
 		System.out.println("위와 같이 주문 하시겠습니까?");

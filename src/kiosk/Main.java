@@ -9,10 +9,8 @@ public class Main {
 		
 		while(true) {
 			if(kiosk.printMenu()) {
-				break; // 프로그램 종료 입력 시 프로그램 종료
+				return; // 프로그램 종료 입력 시 프로그램 종료
 			}
 		}
-		
-		return;
 	}
 }

@@ -23,8 +23,6 @@ public class Order extends Product {
 		shopDesc.clear();
 		shopPrice.clear();
 		totalPrice = 0;
-		System.out.println("메뉴가 초기화 되었습니다.");
-		System.out.println("=======================================\n");
 	}
 	
 

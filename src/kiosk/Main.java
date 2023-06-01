@@ -1,5 +1,6 @@
 package kiosk;
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -7,7 +8,11 @@ public class Main {
 		Kiosk kiosk = new Kiosk();
 		
 		while(true) {
-			kiosk.printMenu();
+			if(kiosk.printMenu()) {
+				break; // 프로그램 종료 입력 시 프로그램 종료
+			}
 		}
+		
+		return;
 	}
 }
